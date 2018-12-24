@@ -1,0 +1,50 @@
+<div class="mesgs">
+  <div class="msg_history" data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>' data-username='<%=current_user.username%>'>
+    <% @messages.each_with_index do |message, index| %>
+      <% if !unread_messages && @chatroom_user.last_read_at < message.created_at %>
+        <% unread_messages = true %>
+        <div class="strike"><span>Unread Messages</span></div>
+      <% end %>
+      <% if message.user != current_user %>
+        <div class="incoming_msg">
+          <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+          <div class="received_msg">
+            <div class="received_withd_msg">
+              <% if index > 0 %>
+                <% if @messages[index-1].user != message.user %>
+                  <p style="font-weight: bold;color: #337ab7;"><%=message.user.username%></p>
+                <% end %>
+              <% else %>
+                <p style="font-weight: bold; color: #337ab7;"><%=message.user.username%></p>
+              <% end %>
+              <p><%=message.body%>
+              <span class="time_date"><%=message.created_at.strftime("%H:%M %p")%></span></p></div>
+          </div>
+        </div>
+      <% else %>
+        <div class="outgoing_msg">
+          <div class="sent_msg">
+            <% if index > 0 %>
+              <% if @messages[index-1].user != message.user %>
+                <p style="font-weight: bold;color: lightcoral;"><%=message.user.username%></p>
+              <% end %>
+            <% else %>
+              <p style="font-weight: bold;color: lightcoral;"><%=message.user.username%></p>
+            <% end %>
+            <p><%=message.body%>
+            <span class="time_date" style= "color: #fff;"><%=message.created_at.strftime("%H:%M %p")%></span></p></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="type_msg">
+    <div class="input_msg_write">
+      <%= form_for [@chatroom, Message.new] do |f| %>
+        <%= f.text_area :body, rows: 1, class: "form-control write_msg", autofocus: true, placeholder: "Type a message" %>
+        <%= f.submit "", class: 'msg_send_btn'  do %>
+          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+        <%end%>
+      <% end %>
+    </div>
+  </div>
+<div>

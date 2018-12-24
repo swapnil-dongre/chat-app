@@ -1,20 +1,12 @@
-<p>
-  <strong>Name:</strong>
-  <%= @chatroom.name %>
-</p>
-
-<% unread_messages = false %>
-<div data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>'>
-  <% @messages.each do |message| %>
-    <% if !unread_messages && @chatroom_user.last_read_at < message.created_at %>
-      <% unread_messages = true %>
-      <div class="strike"><span>Unread Messages</span></div>
-    <% end %>
-
-    <%= render message %>
-  <% end %>
+<div class="headind_srch" chatroom-id= '<%=@chatroom.id%>'>
+  <div class="recent_heading">
+    <h4><%= @chatroom.name %></h4>
+  </div>
 </div>
 
-<%= form_for [@chatroom, Message.new] do |f| %>
-  <%= f.text_area :body, rows: 1, class: "form-control", autofocus: true %>
-<% end %>
+<% unread_messages = false %>
+
+
+<div id="chatroom-messages">
+  <%= render 'chatrooms/chatroom_messages', unread_messages: false %>
+</div>

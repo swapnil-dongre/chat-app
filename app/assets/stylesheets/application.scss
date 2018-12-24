@@ -12,10 +12,14 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
+ *= require toastr
+ *= require chatroom
  */
 
 @import "bootstrap";
 @import "bootstrap-sprockets";
+@import "font-awesome";
 
 .strike {
   display: block;
@@ -47,4 +51,13 @@
 .strike > span:after {
   left: 100%;
   margin-left: 15px;
+}
+
+.badge{
+  background: #FCB322;
+}
+.container{
+  max-width:1170px; margin:auto;
+}
+img{ max-width:100%;
 }

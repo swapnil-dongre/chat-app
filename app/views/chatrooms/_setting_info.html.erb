@@ -1,0 +1,13 @@
+<div class="group-info mesgs">
+  <h5><%= @chatroom_users.count%> participants</h5>
+  <% @chatroom_users.each do |user| %>
+    <div class="group_user">
+      <div class="participant_image">
+        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+      </div>
+      <div class="participant_info">
+        <span><%= user.username.capitalize%></span>
+      </div>
+    </div>
+  <% end %>
+</div>

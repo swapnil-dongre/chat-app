@@ -1,5 +1,6 @@
 class ChatroomsController < ApplicationController
-  before_action :set_chatroom, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_chatroom, only: [:show, :edit, :update, :destroy, :info]
 
   # GET /chatrooms
   # GET /chatrooms.json
@@ -63,6 +64,10 @@ class ChatroomsController < ApplicationController
       format.html { redirect_to chatrooms_url, notice: 'Chatroom was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def info
+    @chatroom_users = @chatroom.users
   end
 
   private

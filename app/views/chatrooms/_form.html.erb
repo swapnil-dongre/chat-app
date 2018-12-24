@@ -1,22 +1,29 @@
-<%= form_for(chatroom) do |f| %>
-  <% if chatroom.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(chatroom.errors.count, "error") %> prohibited this chatroom from being saved:</h2>
+<div class="mesgs">
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading", style= "color: #05728f; font-size: 21px; margin: auto;">
+        New Chatroom
+      </header>
+      <div class="panel-body">
+        <%= form_for(chatroom, html: { class: 'form-create-client'}) do |f| %>
+          <div class="col-lg-12">
+            <div class="col-lg-8">
+              <div class="field">
+                <%= f.label :name, "Chatroom Name" %>
+                <br/>
+                <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+                <br/>
+              </div>
+              <div class="actions mar-top-20">
+                <%= f.submit "Create", class: 'create_without_invite btn btn-primary' %>
+                <%= link_to 'Back', chatrooms_path, class: "btn btn-primary"%>
+              </div>
+            </div>
+          </div>
+        <% end %>
 
-      <ul>
-      <% chatroom.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+      </div>
+    </section>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

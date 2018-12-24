@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require toastr
+//= require chatroom
+//= require users
 //= require_tree .

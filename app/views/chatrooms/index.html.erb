@@ -1,29 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class='mesgs'>
+  <p id="notice"><%= notice %></p>
+  <div class="header-heading">
+    <div class="pull-right">
+      <%= link_to 'New Chatroom', new_chatroom_path, class: "btn btn-primary" %>
+    </div>
+    <h1>Chatrooms</h1>
+  <div>
 
-<h1>Chatrooms</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @chatrooms.each do |chatroom| %>
-      <tr>
-        <td><%= chatroom.name %></td>
-        <td><%= link_to 'Show', chatroom %></td>
-        <td><%= link_to 'Edit', edit_chatroom_path(chatroom) %></td>
-        <td><%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to "Join", chatroom_chatroom_users_path(chatroom), method: :post %></td>
-        <td><%= link_to "Leave", chatroom_chatroom_users_path(chatroom), method: :delete %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Chatroom', new_chatroom_path %>
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table table-bordered table-hover table-striped' id='bc_orders_list'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @chatrooms.each do |chatroom| %>
+            <tr>
+              <td><%= chatroom.name %></td>
+              <td><%= link_to 'Show', chatroom, class: "btn btn-default" %>
+              <%= link_to 'Edit', edit_chatroom_path(chatroom), class: "btn btn-default"%>
+              <%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+              <%= link_to "Join", chatroom_chatroom_users_path(chatroom), method: :post, class: "btn btn-default" %>
+              <%= link_to "Leave", chatroom_chatroom_users_path(chatroom), method: :delete, class: "btn btn-default" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
