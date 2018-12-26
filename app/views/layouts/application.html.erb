@@ -71,7 +71,13 @@
                 <% current_user.chatrooms.public_channels.each do |chatroom| %>
                   <div class="chat_list">
                     <div class="chat_people">
-                      <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                      <div class="chat_img">
+                        <% if chatroom.image.present? %>
+                          <%= image_tag chatroom.image.image.url, class: "user_dp"%>
+                        <% else %>
+                          <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                        <% end %>
+                      </div>
                       <div class="chat_ib">
                         <h5><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %>
                         <% if chatroom.messages.present? %>
@@ -85,14 +91,12 @@
                     </div>
                   </div>
                 <% end %>
-              </div>
-              <div class="inbox_chat">
                 <% (User.all - [current_user]).each do |user| %>
                   <div class="chat_list">
                     <div class="chat_people">
                       <div class="chat_img">
-                      <% if user.display_picture.present? %>
-                        <% image_tag user.display_picture.image.url, class: "user_dp"%>
+                      <% if user.image.present? %>
+                        <%= image_tag user.image.image.url, class: "user_dp"%>
                       <% else %>
                         <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                       <% end %>

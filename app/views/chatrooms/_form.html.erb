@@ -14,6 +14,11 @@
                 <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
                 <br/>
               </div>
+              <div class="field">
+                <%= f.label :image %><br />
+                <%= f.file_field :image, class: "chatroom_display_picture"%>
+                <br/>
+              </div>
               <div class="actions mar-top-20">
                 <%= f.submit "Create", class: 'create_without_invite btn btn-primary' %>
                 <%= link_to 'Back', chatrooms_path, class: "btn btn-primary"%>

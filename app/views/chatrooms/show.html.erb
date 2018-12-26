@@ -1,6 +1,21 @@
 <div class="headind_srch" chatroom-id= '<%=@chatroom.id%>'>
   <div class="recent_heading">
-    <h4><%= @chatroom.name %></h4>
+    <i class="fa fa-arrow-left back_arrow"></i>
+    <% if @chatroom.direct_message %>
+      <div class="user_chat_header">
+        <%= image_tag @chatroom.get_user_image(current_user), class: "user_dp"%>
+      </div>
+        <h4><%= @chatroom.direct_user_name(current_user)%></h4>
+    <% else %>
+      <div class="user_chat_header">
+        <% if @chatroom.image.present? %>
+          <%= image_tag @chatroom.image.image.url, class: "user_dp"%>
+        <% else %>
+          <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+        <% end %>
+      </div>
+      <h4><%= @chatroom.name %></h4>
+    <% end %>
   </div>
 </div>
 

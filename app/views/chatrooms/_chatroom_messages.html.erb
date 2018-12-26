@@ -7,7 +7,15 @@
       <% end %>
       <% if message.user != current_user %>
         <div class="incoming_msg">
-          <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+          <div class="incoming_msg_img">
+            <% if @messages[index-1].user != message.user %>
+              <% if message.user.image.present? %>
+                <%= image_tag message.user.image.image.url, class: "user_thumb"%>
+              <% else %>
+                <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+              <% end %>
+            <% end %>
+          </div>
           <div class="received_msg">
             <div class="received_withd_msg">
               <% if index > 0 %>
@@ -17,8 +25,9 @@
               <% else %>
                 <p style="font-weight: bold; color: #337ab7;"><%=message.user.username%></p>
               <% end %>
-              <p><%=message.body%>
-              <span class="time_date"><%=message.created_at.strftime("%H:%M %p")%></span></p></div>
+              <p><%=message.body%></p>
+              <span class="time_date"><%=message.created_at.strftime("%H:%M %p")%></span>
+            </div>
           </div>
         </div>
       <% else %>
@@ -31,8 +40,9 @@
             <% else %>
               <p style="font-weight: bold;color: lightcoral;"><%=message.user.username%></p>
             <% end %>
-            <p><%=message.body%>
-            <span class="time_date" style= "color: #fff;"><%=message.created_at.strftime("%H:%M %p")%></span></p></div>
+            <p><%=message.body%></p>
+            <span class="time_date" style= "color: #fff;"><%=message.created_at.strftime("%H:%M %p")%></span>
+          </div>
         </div>
       <% end %>
     <% end %>

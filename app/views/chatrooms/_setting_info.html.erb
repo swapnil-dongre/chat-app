@@ -1,13 +1,36 @@
-<div class="group-info mesgs">
-  <h5><%= @chatroom_users.count%> participants</h5>
-  <% @chatroom_users.each do |user| %>
-    <div class="group_user">
-      <div class="participant_image">
+<div class="settings">
+  <div class="profile_info mesgs">
+    <% if @chatroom.direct_message %>
+      <%= image_tag @chatroom.get_user_image(current_user), class: "chatroom_profile"%>
+    <% else %>
+      <% if @chatroom.image.present? %>
+        <%= image_tag @chatroom.image.image.url(:profile), class: "chatroom_profile"%>
+      <% else %>
         <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-      </div>
-      <div class="participant_info">
-        <span><%= user.username.capitalize%></span>
-      </div>
-    </div>
+      <% end %>
+    <% end %>
+     <a href="#"><span class="fa fa-edit fa-2x"></span></a>
+  </div>
+  <div class="profile_details mesgs">
+  <% if @chatroom.direct_message %>
+    <h4><%= @chatroom.direct_user_name(current_user) %></h4>
+    <h5><%= @chatroom.user_last_seen(current_user)%></h5>
+  <% else %>
+    <h4><%= @chatroom.name %></h4>
+    <h5>Created <%= @chatroom.created_at.strftime("%d/%m/%Y")%> at <%= @chatroom.created_at.strftime("%H:%M %p")%></h5>
   <% end %>
+  </div>
+  <div class="group-info mesgs">
+    <h5><%= @chatroom_users.count%> participants</h5>
+    <% @chatroom_users.each do |user| %>
+      <div class="group_user">
+        <div class="participant_image">
+          <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+        </div>
+        <div class="participant_info">
+          <span><%= user.username.capitalize%></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

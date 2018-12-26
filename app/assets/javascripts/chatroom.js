@@ -1,11 +1,13 @@
 $(document).on('turbolinks:load', function() {
   $('.headind_srch').on('click', function(){
-    debugger
     chatroom = $(this).attr('chatroom-id');
     $.ajax({
       url: "/chatrooms/" + chatroom + "/info",
       type: "GET",
-      data: {id: chatroom}
+      data: {id: chatroom},
+      success: function(data) {
+        $('.recent_heading .back_arrow').css("display","inline-block");
+      }
     });
   });
 });
