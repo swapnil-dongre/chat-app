@@ -10,7 +10,7 @@
           <div class="incoming_msg_img">
             <% if @messages[index-1].user != message.user %>
               <% if message.user.image.present? %>
-                <%= image_tag message.user.image.image.url, class: "user_thumb"%>
+                <%= image_tag message.user.image.image.url(:profile), class: "user_thumb"%>
               <% else %>
                 <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
               <% end %>
@@ -51,7 +51,7 @@
     <div class="input_msg_write">
       <%= form_for [@chatroom, Message.new] do |f| %>
         <%= f.text_area :body, rows: 1, class: "form-control write_msg", autofocus: true, placeholder: "Type a message" %>
-        <%= f.submit "", class: 'msg_send_btn'  do %>
+        <%= f.submit "", class: 'hidden'  do %>
           <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
         <%end%>
       <% end %>

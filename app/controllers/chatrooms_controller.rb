@@ -48,15 +48,7 @@ class ChatroomsController < ApplicationController
   # PATCH/PUT /chatrooms/1
   # PATCH/PUT /chatrooms/1.json
   def update
-    image_file = params[:logo_image]
-    image = @chatroom.image
-    if image.nil?
-      logo_image = Image.new(image: image_file)
-      @chatroom.image = logo_image
-      @chatroom.image.save
-    else
-      @chatroom.image.update(image: image_file)
-    end
+    image_update
     respond_to do |format|
       if @chatroom.update(chatroom_params)
         format.html { redirect_to @chatroom, notice: 'Chatroom was successfully updated.' }
@@ -82,6 +74,24 @@ class ChatroomsController < ApplicationController
     @chatroom_users = @chatroom.users
   end
 
+  def change_image
+    @chatroom = Chatroom.find(params[:chatroom_id])
+    @chatroom_users = @chatroom.users
+    if @chatroom.direct_message
+      other_user = @chatroom.other_user(current_user)
+      if other_user.image.nil?
+        image_file = params[:logo_image]
+        logo_image = Image.new(image: image_file)
+        other_user.image = logo_image
+        other_user.image.save
+      else
+        other_user.image.update(image: image_file)
+      end
+    else
+      image_update
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_chatroom
@@ -91,5 +101,17 @@ class ChatroomsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def chatroom_params
       params.require(:chatroom).permit(:name, :image)
+    end
+
+    def image_update
+      image_file = params[:logo_image]
+      image = @chatroom.image
+      if image.nil?
+        logo_image = Image.new(image: image_file)
+        @chatroom.image = logo_image
+        @chatroom.image.save
+      else
+        @chatroom.image.update(image: image_file)
+      end
     end
 end

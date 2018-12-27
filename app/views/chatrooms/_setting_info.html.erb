@@ -1,15 +1,23 @@
 <div class="settings">
   <div class="profile_info mesgs">
     <% if @chatroom.direct_message %>
-      <%= image_tag @chatroom.get_user_image(current_user), class: "chatroom_profile"%>
+      <% if @chatroom.get_user_image(current_user) == "" %>
+        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"  class="chatroom_profile">
+      <% else %>
+        <%= image_tag @chatroom.get_user_image(current_user), class: "chatroom_profile"%>
+      <% end %>
     <% else %>
       <% if @chatroom.image.present? %>
         <%= image_tag @chatroom.image.image.url(:profile), class: "chatroom_profile"%>
       <% else %>
-        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" class="chatroom_profile">
       <% end %>
     <% end %>
-     <a href="#"><span class="fa fa-edit fa-2x"></span></a>
+    <a class="edit_icon" href="javascript:void(0)">
+      <%= file_field_tag :image, class: "hidden choose_image", chatroom_id: @chatroom.id %>
+      <span class="fa fa-edit fa-2x"></span>
+      <p>Change Icon</p>
+    </a>
   </div>
   <div class="profile_details mesgs">
   <% if @chatroom.direct_message %>
@@ -17,15 +25,21 @@
     <h5><%= @chatroom.user_last_seen(current_user)%></h5>
   <% else %>
     <h4><%= @chatroom.name %></h4>
-    <h5>Created <%= @chatroom.created_at.strftime("%d/%m/%Y")%> at <%= @chatroom.created_at.strftime("%H:%M %p")%></h5>
+    <h6>Created <%= @chatroom.created_at.strftime("%d/%m/%Y")%> at <%= @chatroom.created_at.strftime("%H:%M %p")%></h6>
   <% end %>
   </div>
   <div class="group-info mesgs">
     <h5><%= @chatroom_users.count%> participants</h5>
+    <div class="pull-right add_participant"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i></div>
+    <%= select_tag("distributor_client_users", options_for_select(User.all.map{|u| u.username}), {name: "distributor_client_users", include_blank: true, class: "btn app_users_collection form-control"}) %>
     <% @chatroom_users.each do |user| %>
       <div class="group_user">
         <div class="participant_image">
-          <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+          <% if user.image.present?%>
+            <%= image_tag user.image.image.url, class: "box_image"%>
+          <% else %>
+            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+          <% end %>
         </div>
         <div class="participant_info">
           <span><%= user.username.capitalize%></span>

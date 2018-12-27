@@ -2,7 +2,9 @@
   background: #f8f8f8 none repeat scroll 0 0;
   float: left;
   overflow: hidden;
-  width: 40%; border-right:1px solid #c4c4c4;
+  width: 31%;
+  border-right:1px solid #c4c4c4;
+  border-left: 1px solid #c4c4c4;
 }
 .inbox_msg {
   border: 1px solid #c4c4c4;
@@ -17,9 +19,10 @@
 .srch_bar {
   display: inline-block;
   text-align: right;
-  width: 57%;
+  width: 100%;
+  margin-top: 16px;
 }
-.headind_srch{
+.headind_srch, .profile_head{
   padding:10px 29px 10px 20px;
   overflow:hidden;
   border-bottom:1px solid #c4c4c4;
@@ -31,7 +34,7 @@
   margin: auto;
   display: inline-block;
 }
-.srch_bar input{ border:1px solid #cdcdcd; width:80%; padding:2px 0 4px 6px;}
+.srch_bar input{ border:1px solid #cdcdcd; width:100%; padding:2px 0 4px 6px;}
 .srch_bar .input-group-addon button {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: medium none;
@@ -65,7 +68,7 @@
   padding: 18px 16px 10px;
 }
 .inbox_chat {
-  height: auto;
+  height: 517px;
   overflow-y: scroll;
 }
 
@@ -103,7 +106,7 @@
 .mesgs {
   float: left;
   padding: 30px 15px 0 25px;
-  width: 60%;
+  width: 69%;
 }
 
  .sent_msg p {
@@ -186,14 +189,40 @@
 .profile_info:hover a{
   opacity: 1;
 }
-.chatroom_profile{
-  border-radius: 50%;
+.profile_info:hover .chatroom_profile{
+  opacity: 0.5;
 }
-.user_dp{
+.chatroom_profile, .box_image, .user_dp{
   border-radius: 50%;
 }
 .profile_details{
   vertical-align: middle;
   text-align: center;
   background: #ebebeb none repeat scroll 0 0;
+  margin-bottom: 6px;
+}
+.edit_icon{
+  position: absolute;
+  top: 36%;
+  left: 60%;
+  text-decoration: none !important;
+}
+.active_user{
+  font-weight: bold;
+  color: #05728f;
+  font-size: 21px;
+}
+.active_user_image{
+  border-radius: 50%;
+  width: 35%;
+}
+.new_chatroom_icon{
+  color: #05728f;
+  margin-top: 10px;
+}
+.new_chatroom_icon a{
+  padding-right: 10px;
+}
+.add_participant{
+  color: #05728f;
 }

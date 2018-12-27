@@ -17,4 +17,5 @@
 //= require toastr
 //= require chatroom
 //= require users
+//= select2.full
 //= require_tree .

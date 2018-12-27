@@ -1,6 +1,9 @@
 <div class="row">
-  <div class="col-sm-4 col-sm-offset-4">
-    <h1>Edit <%= resource_name.to_s.humanize %></h1>
+  <div class="col-sm-4 col-sm-offset-2">
+    <section class="panel">
+      <header class="panel-heading", style= "color: #05728f; font-size: 21px; margin: auto;">
+        Edit <%= resource_name.to_s.humanize %>
+      </header>
     <hr>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= devise_error_messages! %>
@@ -51,5 +54,6 @@
 
     <%= link_to "Back", :back %>
     <hr>
+    </section>
   </div>
 </div>

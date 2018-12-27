@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :chatrooms do
     get :info
+    post :change_image
     resource :chatroom_users
     resources :messages
   end

@@ -3,7 +3,11 @@
     <i class="fa fa-arrow-left back_arrow"></i>
     <% if @chatroom.direct_message %>
       <div class="user_chat_header">
-        <%= image_tag @chatroom.get_user_image(current_user), class: "user_dp"%>
+        <% if @chatroom.get_user_image(current_user) == "" %>
+          <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+        <% else %>
+          <%= image_tag @chatroom.get_user_image(current_user), class: "user_dp"%>
+        <% end %>
       </div>
         <h4><%= @chatroom.direct_user_name(current_user)%></h4>
     <% else %>

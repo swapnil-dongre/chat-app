@@ -22,12 +22,22 @@ class Chatroom < ApplicationRecord
     end
   end
 
+  def other_user(user)
+    users.where.not(username: user.username).first
+  end
+
   def direct_user_name(user)
-    users.where.not(username: user).first.username.capitalize
+    direct_user = other_user(user)
+    direct_user.username.capitalize
   end
 
   def get_user_image(user)
-    users.where.not(username: user).first.image.image.url(:profile)
+    direct_user = other_user(user)
+    if direct_user.image.present?
+      direct_user.image.image.url(:profile)
+    else
+      ""
+    end
   end
 
   def user_last_seen(user)

@@ -12,6 +12,16 @@
       </div>
 
       <div class="form-group">
+        <%= f.label :firstname %><br />
+        <%= f.text_field :firstname, autofocus: false, class: 'form-control' %>
+      </div>
+
+       <div class="form-group">
+        <%= f.label :lastname %><br />
+        <%= f.text_field :lastname, autofocus: false, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
         <%= f.label :email %><br />
         <%= f.email_field :email, class: 'form-control' %>
       </div>

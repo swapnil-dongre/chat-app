@@ -10,4 +10,8 @@ $(document).on('turbolinks:load', function() {
       }
     });
   });
+
+  // $(".app_users_collection").select2({
+  //   placeholder: "Select User"
+  // });
 });
