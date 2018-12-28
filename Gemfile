@@ -56,4 +56,4 @@ gem 'toastr-rails'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'rmagick'
 gem 'mini_magick'
-
+gem 'rails_emoji_picker'

@@ -16,11 +16,13 @@
  *= require toastr
  *= require chatroom
  *= require select2
+ *= require rails_emoji_picker
  */
 
 @import "bootstrap";
 @import "bootstrap-sprockets";
 @import "font-awesome";
+@import 'rails_emoji_picker';
 
 .strike {
   display: block;

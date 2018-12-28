@@ -17,5 +17,6 @@
 //= require toastr
 //= require chatroom
 //= require users
-//= select2.full
+//= require select2.full
+//= require rails_emoji_picker
 //= require_tree .

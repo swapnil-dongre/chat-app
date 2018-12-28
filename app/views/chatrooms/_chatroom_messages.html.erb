@@ -25,7 +25,7 @@
               <% else %>
                 <p style="font-weight: bold; color: #337ab7;"><%=message.user.username%></p>
               <% end %>
-              <p><%=message.body%></p>
+              <p><%= content_with_emoji(message.body) %></p>
               <span class="time_date"><%=message.created_at.strftime("%H:%M %p")%></span>
             </div>
           </div>
@@ -40,7 +40,7 @@
             <% else %>
               <p style="font-weight: bold;color: lightcoral;"><%=message.user.username%></p>
             <% end %>
-            <p><%=message.body%></p>
+            <p><%= content_with_emoji(message.body) %></p>
             <span class="time_date" style= "color: #fff;"><%=message.created_at.strftime("%H:%M %p")%></span>
           </div>
         </div>
@@ -50,7 +50,7 @@
   <div class="type_msg">
     <div class="input_msg_write">
       <%= form_for [@chatroom, Message.new] do |f| %>
-        <%= f.text_area :body, rows: 1, class: "form-control write_msg", autofocus: true, placeholder: "Type a message" %>
+        <%= f.text_area :body, rows: 1, class: "form-control write_msg emoji-picker-container", autofocus: true, placeholder: "Type a message", data: { emojiable: true } %>
         <%= f.submit "", class: 'hidden'  do %>
           <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
         <%end%>
