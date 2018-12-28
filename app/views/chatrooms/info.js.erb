@@ -19,3 +19,11 @@ $('.choose_image').on('change', function(e){
     processData: false
   });
 });
+
+$(".app_users_collection").select2({
+    placeholder: "Select User"
+});
+
+$('.add_participant').on('click', function(){
+  $('.group-info .select2-container').toggle();
+});

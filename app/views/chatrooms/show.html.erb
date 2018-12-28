@@ -29,3 +29,9 @@
 <div id="chatroom-messages">
   <%= render 'chatrooms/chatroom_messages', unread_messages: false %>
 </div>
+
+<script type="text/javascript">
+  $('.msg_history').scrollTop($(".msg_history")[0].scrollHeight);
+</script>
+
+

@@ -72,6 +72,7 @@ class ChatroomsController < ApplicationController
 
   def info
     @chatroom_users = @chatroom.users
+    @invite_user_name_with_id = (User.all - @chatroom.users).map{|other_user| ["#{other_user.firstname}" + " " +  "#{other_user.lastname}" ,other_user.id]}
   end
 
   def change_image
@@ -90,6 +91,10 @@ class ChatroomsController < ApplicationController
     else
       image_update
     end
+  end
+
+  def search_result
+    @selected_chatroom = search(params[:search_value])
   end
 
   private
@@ -113,5 +118,14 @@ class ChatroomsController < ApplicationController
       else
         @chatroom.image.update(image: image_file)
       end
+    end
+
+    def search(value)
+      result_users = User.where('firstname LIKE ? OR lastname LIKE ?', "%#{value}%", "%#{value}%").distinct
+      result_chatrooms = Chatroom.public_channels.where("name LIKE ?", "%#{value}%").distinct
+      final_search = {}
+      final_search["users"] = result_users
+      final_search["chatrooms"] = result_chatrooms
+      final_search
     end
 end

@@ -77,55 +77,7 @@
                 </div>
               </div>
               <div class="inbox_chat">
-                <% current_user.active_chatroom.each do |chatroom| %>
-                  <% if chatroom.direct_message == false %>
-                    <div class="chat_list">
-                      <div class="chat_people">
-                        <div class="chat_img">
-                          <% if chatroom.image.present? %>
-                            <%= image_tag chatroom.image.image.url, class: "user_dp"%>
-                          <% else %>
-                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                          <% end %>
-                        </div>
-                        <div class="chat_ib">
-                          <h5><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %>
-                          <% if chatroom.messages.present? %>
-                            <span class="chat_date"><%= chat_date(chatroom)%></span>
-                            <span class='badge' style= "display: none;">1</span></h5>
-                            <p><%=chatroom.messages.last.body%></p>
-                          <% else %>
-                            <p>Start your conversation</p>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  <% else %>
-                    <% user = chatroom.other_user(current_user) %>
-                    <div class="chat_list">
-                      <div class="chat_people">
-                        <div class="chat_img">
-                        <% if user.image.present? %>
-                          <%= image_tag user.image.image.url(:profile), class: "user_dp"%>
-                        <% else %>
-                          <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                        <% end %>
-                        </div>
-                        <div class="chat_ib">
-                        <% user_chatroom = Chatroom.direct_message_for_users([current_user, user]) %>
-                          <h5><%= link_to user.username, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: user_chatroom.id } %>
-                          <% if user_chatroom.messages.present? %>
-                            <span class="chat_date"><%= chat_date(user_chatroom)%></span>
-                            <span class='badge' style= "display: none;">1</span></h5>
-                            <p><%=user_chatroom.messages.last.body%></p>
-                          <% else %>
-                            <p>Start your conversation</p>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
+                <%= render partial: "chatrooms/user_favourites" %>
               </div>
             </div>
           <% end %>

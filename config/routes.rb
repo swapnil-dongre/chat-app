@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  get '/chatrooms/search_result', to: 'chatrooms#search_result'
   resources :chatrooms do
     get :info
     post :change_image

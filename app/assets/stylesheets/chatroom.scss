@@ -226,3 +226,15 @@
 .add_participant{
   color: #05728f;
 }
+.no_result{
+  color: #05728f;
+  font-size: 16px;
+  vertical-align: middle;
+  text-align: center;
+}
+.group-info .select2-container{
+  float:right;
+  width: 20% !important;
+  display: none;
+  transition: all .3s ease;
+}

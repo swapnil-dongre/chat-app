@@ -11,7 +11,13 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  // $(".app_users_collection").select2({
-  //   placeholder: "Select User"
-  // });
+  $('.search-bar').on('keyup', function() {
+    str = $(this).val();
+    $.ajax({
+      url: "/chatrooms/search_result",
+      type: "GET",
+      data: {search_value: str}
+    });
+  });
+
 });

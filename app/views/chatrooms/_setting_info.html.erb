@@ -30,8 +30,12 @@
   </div>
   <div class="group-info mesgs">
     <h5><%= @chatroom_users.count%> participants</h5>
-    <div class="pull-right add_participant"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i></div>
-    <%= select_tag("distributor_client_users", options_for_select(User.all.map{|u| u.username}), {name: "distributor_client_users", include_blank: true, class: "btn app_users_collection form-control"}) %>
+    <% if @chatroom.direct_message == false %>
+      <div class="pull-right add_participant">
+        <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
+      </div>
+      <%= select_tag("distributor_client_users", options_for_select(@invite_user_name_with_id ), {name: "distributor_client_users", include_blank: true, class: "btn app_users_collection form-control"}) %>
+    <% end %>
     <% @chatroom_users.each do |user| %>
       <div class="group_user">
         <div class="participant_image">
